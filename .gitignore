@@ -1,0 +1,12 @@
+# Build output
+dist/
+
+# Test dependencies and artifacts
+node_modules/
+test/.tmp/
+test/.tmp-shots/
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+*.log

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PeerRipper</title>
+<style>
+    * { box-sizing: border-box; }
+    body {
+        width: 292px; margin: 0; padding: 14px;
+        background: #ffffff; color: #1d2b18;
+        font: 13px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    header { display: flex; align-items: center; gap: 10px; }
+    header img { width: 34px; height: 34px; display: block; }
+    h1 { margin: 0; font-size: 14px; font-weight: 700; letter-spacing: 0.1px; }
+    .sub { margin: 1px 0 0; font-size: 11px; color: #6d7b66; }
+    .status {
+        display: flex; align-items: center; gap: 8px;
+        margin-top: 13px; font-size: 12.5px; font-weight: 650;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #b9c8ae; flex: none; }
+    .dot.ok { background: #6aa842; }
+    .dot.busy { background: #d9a520; }
+    .dot.bad { background: #b3261e; }
+    .detail {
+        margin: 3px 0 0 16px; font-size: 11.5px; color: #6d7b66;
+        word-break: break-word; min-height: 16px;
+    }
+    .controls { display: flex; gap: 8px; margin-top: 13px; }
+    select, .go {
+        height: 34px; border-radius: 9px;
+        font: 600 12.5px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    select {
+        flex: 1; min-width: 0; padding: 0 8px; cursor: pointer;
+        border: 1px solid #d6dfcd; background: #f7faf3; color: #2c3a25;
+    }
+    select:disabled { opacity: 0.55; cursor: default; }
+    .go {
+        padding: 0 15px; border: 0; cursor: pointer; color: #ffffff;
+        background: #6aa842;
+    }
+    .go:hover:not(:disabled) { background: #5d953a; }
+    .go:disabled { background: #b9c8ae; cursor: default; }
+    .go.cancel { background: #eef0ec; color: #3c4736; }
+    .go.cancel:hover { background: #e3e7df; }
+    .route { margin-top: 8px; gap: 8px; }
+    .ghost {
+        flex: 1; min-width: 0; height: 30px; padding: 0 8px; border-radius: 9px; cursor: pointer;
+        border: 1px solid #d6dfcd; background: #f7faf3; color: #2c3a25;
+        font: 600 11.5px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .ghost:hover:not(:disabled) { background: #eef4e7; }
+    .ghost:disabled { opacity: 0.55; cursor: default; }
+    .ghost.on { background: #fdeceb; border-color: #f2c6c2; color: #b3261e; }
+    .note { margin: 9px 0 0; font-size: 11px; color: #87927f; }
+</style>
+</head>
+<body>
+    <header>
+        <img id="logo" alt="">
+        <div>
+            <h1>PeerRipper</h1>
+            <p class="sub">Street View panorama</p>
+        </div>
+    </header>
+
+    <div class="status"><span id="dot" class="dot"></span><span id="status">Looking for a panorama…</span></div>
+    <p id="detail" class="detail"></p>
+
+    <div class="controls">
+        <select id="zoom" title="Resolution">
+            <option value="5">Original</option>
+            <option value="4">Half</option>
+            <option value="3">Quarter</option>
+        </select>
+        <button id="go" class="go" type="button" disabled>Download</button>
+    </div>
+
+    <div class="controls route">
+        <button id="record" class="ghost" type="button">Record route</button>
+        <button id="batch" class="ghost" type="button" disabled>Download all</button>
+    </div>
+
+    <p id="note" class="note"></p>
+
+    <script src="api.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>
