@@ -1,17 +1,17 @@
-# PeerRipper
+# peerRipper
 
 **Download Google Street View panoramas as single, full-resolution JPEGs — stitched locally in your browser.**
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-6aa842.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-1.2.0-6aa842.svg)](extension/manifest.base.json)
 
-PeerRipper is a cross-browser extension for **Chrome, Edge, Opera, and Firefox**. When you are looking at a panorama in Google Maps Street View, it fetches the same 512 × 512 JPEG tiles Street View uses, works out the panorama's real tile canvas (for example 10240 × 5120), and splices those tiles into one file at the JPEG coefficient level. There is no server, no screenshotting, and no pixel re-encoding.
+peerRipper is a cross-browser extension for **Chrome, Edge, Opera, and Firefox**. When you are looking at a panorama in Google Maps Street View, it fetches the same 512 × 512 JPEG tiles Street View uses, works out the panorama's real tile canvas (for example 10240 × 5120), and splices those tiles into one file at the JPEG coefficient level. There is no server, no screenshotting, and no pixel re-encoding.
 
 It can also record a route while you move through Street View and download every panorama you visited in one batch.
 
 <p align="center">
-  <img src="docs/screenshots/card.png" width="300" alt="PeerRipper card on a Street View page">
-  <img src="docs/screenshots/popup.png" width="300" alt="PeerRipper toolbar popup">
+  <img src="docs/screenshots/card.png" width="300" alt="peerRipper card on a Street View page">
+  <img src="docs/screenshots/popup.png" width="300" alt="peerRipper toolbar popup">
 </p>
 
 ---
@@ -33,7 +33,7 @@ It can also record a route while you move through Street View and download every
 
 ## Features
 
-- **True full resolution.** PeerRipper probes the tile service to find the exact panorama canvas Google serves, instead of trusting the size hint in the URL. Original resolution can be 10240 × 5120 or larger.
+- **True full resolution.** peerRipper probes the tile service to find the exact panorama canvas Google serves, instead of trusting the size hint in the URL. Original resolution can be 10240 × 5120 or larger.
 - **Quality-preserving stitching.** Tiles are merged in the JPEG DCT domain. The image is never decoded to pixels and re-compressed, so the output retains the source tiles' quality and has no visible seams.
 - **Three resolutions.** Original (native tile resolution), Half, and Quarter for smaller files.
 - **Route recording.** Record the panoramas you visit while moving along a road or path, then download the whole route in one go. Up to 500 panoramas per route.
@@ -53,7 +53,7 @@ It can also record a route while you move through Street View and download every
 
 The Chromium builds use an MV3 service worker with an offscreen document for blob handling. The Firefox build uses an MV3 event page and runs the engine directly in the background page.
 
-> PeerRipper is not yet listed in the browser add-on stores. Build the package and load it locally, or use the ZIP as the upload artifact when submitting to a store.
+> peerRipper is not yet listed in the browser add-on stores. Build the package and load it locally, or use the ZIP as the upload artifact when submitting to a store.
 
 ## Installation
 
@@ -134,8 +134,8 @@ You can cancel at any time with the **Cancel** button. The extension shows the d
 Batch files are saved to a subfolder and numbered in capture order:
 
 ```
-Downloads/PeerRipper/001_<panoid>_<width>x<height>.jpg
-Downloads/PeerRipper/002_<panoid>_<width>x<height>.jpg
+Downloads/peerRipper/001_<panoid>_<width>x<height>.jpg
+Downloads/peerRipper/002_<panoid>_<width>x<height>.jpg
 …
 ```
 
@@ -181,7 +181,7 @@ Google Maps tab
                                              probe → fetch tiles → stitch → save
 ```
 
-- `api.js` exposes `PeerRipperApi`, which prefers the promise-based `browser.*` namespace and falls back to `chrome.*`.
+- `api.js` exposes `peerRipperApi`, which prefers the promise-based `browser.*` namespace and falls back to `chrome.*`.
 - `background-core.js` is browser-neutral: it owns job state, relays progress to the tab, and performs downloads.
 - On Chromium, `bridge-chromium.js` forwards work to an offscreen document (`offscreen.html`) that can create Blob URLs; `downloads.onDeterminingFilename` restores the intended filename for blob downloads.
 - On Firefox, `bridge-firefox.js` calls the engine inline in the background page.
@@ -252,21 +252,21 @@ npx web-ext lint --source-dir dist/firefox
 | `https://streetviewpixels-pa.googleapis.com/*` | Fetch Street View image tiles. |
 | Content script matches on Google Maps domains | Show the in-page pill and read the current panorama ID. |
 
-PeerRipper has **no analytics, telemetry, accounts, remote code, or backend**. The only outbound traffic is tile requests to Google. Recorded routes are stored in the Maps tab's `sessionStorage` and are never synced anywhere.
+peerRipper has **no analytics, telemetry, accounts, remote code, or backend**. The only outbound traffic is tile requests to Google. Recorded routes are stored in the Maps tab's `sessionStorage` and are never synced anywhere.
 
 ## Limitations
 
 - **Street View tiles only.** Photo spheres, some user-contributed uploads, and panoramas that are not served through the web tile service return HTTP 400/404 and cannot be downloaded this way. In batch mode they are skipped and reported.
-- **A panorama must be open.** PeerRipper reads the live panorama from the Maps tab; it does not accept bare place links or arbitrary coordinates.
+- **A panorama must be open.** peerRipper reads the live panorama from the Maps tab; it does not accept bare place links or arbitrary coordinates.
 - **Route capture follows your navigation.** Only panoramas you actually enter while recording are added. Panoramas that the page skips over are not captured.
 - **Resolution is discovered by probing.** Unusual panoramas may report a canvas different from the `!7i/!8i` hint, which is expected.
 - **Firefox temporary installs do not survive restart.** Permanent installation requires a signed build.
 - **Street View changes.** Google can change how Maps embeds panoramas or serves tiles; discovery may need updating when that happens.
-- **Use responsibly.** Download only imagery you are entitled to use, and respect Google's Terms of Service and applicable copyright. PeerRipper is not affiliated with, endorsed by, or sponsored by Google. Google Maps and Street View are trademarks of Google LLC.
+- **Use responsibly.** Download only imagery you are entitled to use, and respect Google's Terms of Service and applicable copyright. peerRipper is not affiliated with, endorsed by, or sponsored by Google. Google Maps and Street View are trademarks of Google LLC.
 
 ## FAQ
 
-**Does PeerRipper upload or collect anything?**
+**Does peerRipper upload or collect anything?**
 No. Everything runs in your browser, and no usage data leaves it.
 
 **Why does a panorama fail with "not served as Street View tiles"?**
@@ -279,7 +279,7 @@ Original resolution is the raw panorama (often 10240 × 5120). Choose Half or Qu
 No. It is assembled from the source JPEG tiles at the coefficient level, so it keeps the source detail rather than capturing the distorted, partially loaded canvas.
 
 **Where do batch files go?**
-To a `PeerRipper` folder inside your Downloads folder, numbered in the order they were recorded.
+To a `peerRipper` folder inside your Downloads folder, numbered in the order they were recorded.
 
 ## Contributing
 
@@ -291,4 +291,4 @@ Issues and pull requests are welcome. Before submitting a change:
 
 ## License
 
-[MIT](LICENSE) © 2026 PeerRipper contributors
+[MIT](LICENSE) © 2026 peerRipper contributors

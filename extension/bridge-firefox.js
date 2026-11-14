@@ -1,9 +1,9 @@
 // Firefox bridge: background pages have DOM and blob support, so the engine runs
 // inline instead of in an offscreen document.
 (() => {
-    const engine = globalThis.PeerRipperEngine;
+    const engine = globalThis.peerRipperEngine;
 
-    globalThis.PeerRipperBridge = {
+    globalThis.peerRipperBridge = {
         startJob(job, dispatch) {
             if (engine.isBusy()) return Promise.resolve({ ok: false, error: 'Another download is already running.' });
             engine.startJob(job, dispatch).catch(() => {});

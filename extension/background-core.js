@@ -1,6 +1,6 @@
 (() => {
-    const api = globalThis.PeerRipperApi;
-    const bridge = globalThis.PeerRipperBridge;
+    const api = globalThis.peerRipperApi;
+    const bridge = globalThis.peerRipperBridge;
     const PANOID_PATTERN = /^[A-Za-z0-9_-]{18,28}$/;
     const MAX_BATCH = 500;
 

@@ -111,8 +111,8 @@ const batchDone = await waitFor('pr:batch-done');
 if (batchDone.count !== 2 || batchDone.saved !== 1 || batchDone.failures !== 1) {
     throw new Error(`Unexpected batch result: ${JSON.stringify(batchDone)}`);
 }
-const batchDownload = downloads.find((options) => options.filename.startsWith('PeerRipper/'));
-if (!batchDownload || batchDownload.filename !== `PeerRipper/001_${goodPano}_3328x1664.jpg`) {
+const batchDownload = downloads.find((options) => options.filename.startsWith('peerRipper/'));
+if (!batchDownload || batchDownload.filename !== `peerRipper/001_${goodPano}_3328x1664.jpg`) {
     throw new Error(`Unexpected batch download: ${JSON.stringify(batchDownload)}`);
 }
 if (storage.size !== 0) throw new Error(`Active job was not cleared: ${JSON.stringify([...storage])}`);

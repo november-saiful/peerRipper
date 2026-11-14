@@ -1,5 +1,5 @@
 (() => {
-    const engine = globalThis.PeerRipperEngine;
+    const engine = globalThis.peerRipperEngine;
 
     function post(payload) {
         chrome.runtime.sendMessage(payload).catch(() => {});

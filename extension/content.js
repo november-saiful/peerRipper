@@ -6,7 +6,7 @@
     const PANOID_PATTERN = /^[A-Za-z0-9_-]{18,28}$/;
     const ROUTE_KEY = '__peerripper_route_v1';
     const MAX_ROUTE = 500;
-    const api = globalThis.PeerRipperApi;
+    const api = globalThis.peerRipperApi;
     const iconUrl = api.runtime.getURL('icons/icon48.png');
 
     const state = {
@@ -208,7 +208,7 @@
                 <header>
                     ${mark()}
                     <div class="titles">
-                        <h1>PeerRipper</h1>
+                        <h1>peerRipper</h1>
                         <p class="sub">Street View panorama</p>
                     </div>
                     <button class="close" type="button" title="Close">&#10005;</button>
@@ -520,8 +520,8 @@
             } else {
                 state.error = null;
                 state.result = Number(message.failures)
-                    ? `Saved ${message.saved} of ${message.count} · ${message.failures} unavailable — PeerRipper/`
-                    : `Saved ${message.saved} panorama${message.saved === 1 ? '' : 's'} — PeerRipper/`;
+                    ? `Saved ${message.saved} of ${message.count} · ${message.failures} unavailable — peerRipper/`
+                    : `Saved ${message.saved} panorama${message.saved === 1 ? '' : 's'} — peerRipper/`;
             }
             sync();
         } else if (message.type === 'pr:failed') {

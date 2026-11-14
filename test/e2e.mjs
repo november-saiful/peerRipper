@@ -188,8 +188,8 @@ try {
 
     complete = await waitForDownload();
     if (complete.length !== 2) throw new Error(`Expected 2 downloads, got ${complete.length}`);
-    const batchFile = complete.find((item) => item.filename.includes('PeerRipper'));
-    if (!batchFile) throw new Error('Batch file was not saved into the PeerRipper folder.');
+    const batchFile = complete.find((item) => item.filename.includes('peerRipper'));
+    if (!batchFile) throw new Error('Batch file was not saved into the peerRipper folder.');
     const batchName = `001_${goodPano}_3328x1664.jpg`;
     if (path.basename(batchFile.filename) !== batchName) {
         throw new Error(`Wrong batch filename: ${path.basename(batchFile.filename)}`);
@@ -243,7 +243,7 @@ function cleanupDownloads(items) {
         } catch {
             // The file was already moved or removed.
         }
-        if (path.basename(path.dirname(item.filename)) === 'PeerRipper') {
+        if (path.basename(path.dirname(item.filename)) === 'peerRipper') {
             try {
                 rmdirSync(path.dirname(item.filename));
             } catch {

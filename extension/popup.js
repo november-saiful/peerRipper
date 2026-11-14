@@ -1,4 +1,4 @@
-const api = globalThis.PeerRipperApi;
+const api = globalThis.peerRipperApi;
 const ZOOM_NAMES = { 5: 'Original', 4: 'Half', 3: 'Quarter' };
 const POLL_MS = 800;
 
@@ -60,10 +60,10 @@ function progressText(progress) {
 function noteText() {
     if (running) {
         return batch
-            ? `Downloading ${routeCount} panorama${routeCount === 1 ? '' : 's'} to PeerRipper/.`
+            ? `Downloading ${routeCount} panorama${routeCount === 1 ? '' : 's'} to peerRipper/.`
             : 'Keep this tab open. The file goes to Downloads.';
     }
-    if (!panoid) return 'Open Street View, then reopen PeerRipper.';
+    if (!panoid) return 'Open Street View, then reopen peerRipper.';
     if (recording) return `${routeCount} panorama${routeCount === 1 ? '' : 's'} captured. Move along the route.`;
     if (routeCount) {
         return `${routeCount} panorama${routeCount === 1 ? '' : 's'} recorded · ${ZOOM_NAMES[Number(el.zoom.value)]} resolution`;
@@ -125,7 +125,7 @@ function apply(state) {
         setDetail(panoid);
     } else {
         setStatus('No panorama found', 'bad');
-        setDetail('Enter Street View in this tab, then reopen PeerRipper.');
+        setDetail('Enter Street View in this tab, then reopen peerRipper.');
     }
     sync();
 }
@@ -183,7 +183,7 @@ async function init() {
         recording = false;
         routeCount = 0;
         setStatus('Open Google Maps first', 'bad');
-        setDetail('PeerRipper reads the live Street View panorama from the page.');
+        setDetail('peerRipper reads the live Street View panorama from the page.');
         sync();
         return;
     }

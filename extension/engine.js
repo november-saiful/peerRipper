@@ -262,7 +262,7 @@
                         index,
                         count,
                         url: result.url,
-                        filename: `PeerRipper/${String(index + 1).padStart(3, '0')}_${panoids[index]}_${result.width}x${result.height}.jpg`,
+                        filename: `peerRipper/${String(index + 1).padStart(3, '0')}_${panoids[index]}_${result.width}x${result.height}.jpg`,
                         size: result.size,
                         width: result.width,
                         height: result.height,
@@ -296,5 +296,5 @@
         return Boolean(active);
     }
 
-    globalThis.PeerRipperEngine = { startJob, startBatch, cancel, revoke, isBusy };
+    globalThis.peerRipperEngine = { startJob, startBatch, cancel, revoke, isBusy };
 })();

@@ -1,7 +1,7 @@
 // Chromium bridge: the service worker cannot create blob URLs, so downloads run in
 // an offscreen document.
 (() => {
-    const api = globalThis.PeerRipperApi;
+    const api = globalThis.peerRipperApi;
     const OFFSCREEN_URL = 'offscreen.html';
 
     let offscreenPromise = null;
@@ -43,7 +43,7 @@
         }
     }
 
-    globalThis.PeerRipperBridge = {
+    globalThis.peerRipperBridge = {
         startJob(job) {
             return start({ type: 'pr:run', job });
         },
