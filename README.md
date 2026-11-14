@@ -3,7 +3,7 @@
 **Download Google Street View panoramas as single, full-resolution JPEGs — stitched locally in your browser.**
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-6aa842.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.2.0-6aa842.svg)](extension/manifest.base.json)
+[![Release](https://img.shields.io/github/v/release/november-saiful/peerRipper?color=6aa842)](https://github.com/november-saiful/peerRipper/releases/latest)
 
 peerRipper is a cross-browser extension for **Chrome, Edge, Opera, and Firefox**. When you are looking at a panorama in Google Maps Street View, it fetches the same 512 × 512 JPEG tiles Street View uses, works out the panorama's real tile canvas (for example 10240 × 5120), and splices those tiles into one file at the JPEG coefficient level. There is no server, no screenshotting, and no pixel re-encoding.
 
@@ -44,22 +44,24 @@ It can also record a route while you move through Street View and download every
 
 ## Supported browsers
 
-| Browser | Minimum version | Build output |
+| Browser | Minimum version | Package |
 | --- | --- | --- |
-| Google Chrome | 116 | `dist/chromium` · `peerripper-chromium.zip` |
-| Microsoft Edge | 116 | `dist/edge` · `peerripper-edge.zip` |
-| Opera | Chromium 116+ | `dist/opera` · `peerripper-opera.zip` |
-| Mozilla Firefox | 140 (desktop), 142 (Android) | `dist/firefox` · `peerripper-firefox.zip` |
+| Google Chrome | 116 | [`peerripper-chromium.zip`](https://github.com/november-saiful/peerRipper/releases/latest/download/peerripper-chromium.zip) |
+| Microsoft Edge | 116 | [`peerripper-edge.zip`](https://github.com/november-saiful/peerRipper/releases/latest/download/peerripper-edge.zip) |
+| Opera | Chromium 116+ | [`peerripper-opera.zip`](https://github.com/november-saiful/peerRipper/releases/latest/download/peerripper-opera.zip) |
+| Mozilla Firefox | 140 (desktop), 142 (Android) | [`peerripper-firefox.zip`](https://github.com/november-saiful/peerRipper/releases/latest/download/peerripper-firefox.zip) |
 
 The Chromium builds use an MV3 service worker with an offscreen document for blob handling. The Firefox build uses an MV3 event page and runs the engine directly in the background page.
 
-> peerRipper is not yet listed in the browser add-on stores. Build the package and load it locally, or use the ZIP as the upload artifact when submitting to a store.
+> peerRipper is not yet listed in the browser add-on stores, so packages are distributed through [GitHub Releases](https://github.com/november-saiful/peerRipper/releases). The same ZIPs are ready to upload when submitting to a store.
 
 ## Installation
 
-### 1. Build the packages
+### 1. Get the extension package
 
-You only need Node.js 22.2+ (or 20.15+). The packager has no npm dependencies.
+**Option A — download a release (no build tools needed).** Download the ZIP for your browser from the [latest release](https://github.com/november-saiful/peerRipper/releases/latest) and extract it. The extracted folder contains `manifest.json` and the extension files.
+
+**Option B — build from source.** You only need Node.js 22.2+ (or 20.15+). The packager has no npm dependencies.
 
 ```bash
 git clone https://github.com/november-saiful/peerRipper.git
@@ -82,24 +84,24 @@ dist/firefox/             dist/peerripper-firefox.zip
 
 1. Open `chrome://extensions`.
 2. Enable **Developer mode**.
-3. Click **Load unpacked** and select `dist/chromium`.
+3. Click **Load unpacked** and select the extracted folder (or `dist/chromium` if you built from source).
 
 **Edge**
 
 1. Open `edge://extensions`.
 2. Enable **Developer mode**.
-3. Click **Load unpacked** and select `dist/edge`.
+3. Click **Load unpacked** and select the extracted folder (or `dist/edge` if you built from source).
 
 **Opera**
 
 1. Open `opera://extensions`.
 2. Enable **Developer mode**.
-3. Click **Load unpacked** and select `dist/opera`.
+3. Click **Load unpacked** and select the extracted folder (or `dist/opera` if you built from source).
 
 **Firefox**
 
 1. Open `about:debugging#/runtime/this-firefox`.
-2. Click **Load Temporary Add-on…** and choose `dist/firefox/manifest.json`.
+2. Click **Load Temporary Add-on…** and choose `manifest.json` inside the extracted folder (or `dist/firefox/manifest.json` if you built from source).
 
 A temporary add-on is removed when Firefox restarts. For a permanent installation, the package must be signed by Mozilla (for example through [addons.mozilla.org](https://addons.mozilla.org/developers/)). The Firefox manifest already contains the Gecko ID `peerripper@peerripper.dev` and declares that no data is collected.
 
